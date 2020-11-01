@@ -40,7 +40,11 @@ class SensorDistance(Device):
    def waitUntilDistanceOver(self, distance, shotRange = False):
 
       self.sendCode("{0}.wait_for_distance_farther_than({1}, 'cm', {2})".format(self._name, 0.1 * distance, shotRange))
+      result = self.sendCode("print('OK')")
+      Device.valueFromArray(result, str)
 
    def waitUntilDistanceUnder(self, distance, shotRange = False):
 
       self.sendCode("{0}.wait_for_distance_closer_than({1}, 'cm', {2})".format(self._name, 0.1 * distance, shotRange))
+      result = self.sendCode("print('OK')")
+      Device.valueFromArray(result, str)

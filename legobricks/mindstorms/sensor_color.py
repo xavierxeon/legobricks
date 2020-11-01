@@ -87,6 +87,8 @@ class SensorColor(Device):
    def waitUntilColor(self, color):
 
       self.sendCode("{0}.wait_until_color('{1}')".format(self._name, color))
+      result = self.sendCode("print('OK')")
+      Device.valueFromArray(result, str)
 
    def waitForNewColor(self):
 
