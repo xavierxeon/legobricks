@@ -1,0 +1,1 @@
+Control LEGO microopython brick froma pc or mac

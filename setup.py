@@ -15,7 +15,7 @@ setuptools.setup(
     description="Control micropython LEGO bricks",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/xavierxeon/xxPyStuff",
+    url="https://github.com/xavierxeon/legobricks",
     license='MIT',
     packages=packages,
     install_requires=['colorama', 'pyside2'],
