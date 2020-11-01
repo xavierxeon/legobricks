@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 packages = setuptools.find_packages()
 
 setuptools.setup(
-    name="legobrock",
+    name="legobricks",
     version="0.1.0",
     author="Ralf Waspe",
     author_email="rwaspe@me.com",
