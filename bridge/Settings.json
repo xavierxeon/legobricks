@@ -1,7 +1,0 @@
-[
-   {
-      "UsbDevice": "/dev/tty.usbmodem3357398333381",
-      "BluetoothDevice": "/dev/tty.LEGOHubRobo-SerialPortP",
-      "ServerPort": 51515
-   }
-]
