@@ -11,6 +11,7 @@ class Settings:
 
       def __init__(self, dataDict):
 
+         self.name = dataDict['Name']
          self.usbDevice = dataDict['UsbDevice']
          self.bluetoothDevice = dataDict['BluetoothDevice']
          self.serverPort = int(dataDict['ServerPort'])
@@ -32,13 +33,13 @@ class Settings:
    def create(fileName):
 
       channelData = {
+         'Name': str()
          'UsbDevice': str(),
          'BluetoothDevice': str(),
          'ServerPort': 51515
       }
 
       operatingSystem = platform.system()
-
       if 'Darwin' == operatingSystem:
          channelData['BluetoothDevice'] = '/dev/tty.LEGOHubRobo-SerialPortP'
       elif 'Windows' == operatingSystem:
