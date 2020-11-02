@@ -2,6 +2,8 @@
 
 from ..device import Device
 
+# from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
+
 class Hub(Device):
 
    class Button:
@@ -27,7 +29,7 @@ class Hub(Device):
    def __init__(self, brick):
 
       Device.__init__(self, brick, None)
-      self.storeName('mshub')
+      self.storeName('myhub')
 
       self.sendCode("{0} = MSHub()".format(self._name))
 
