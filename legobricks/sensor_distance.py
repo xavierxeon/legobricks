@@ -1,6 +1,8 @@
 #!/usr/env/bin python3
 
-from ..device import Device
+from helper import Device
+
+from .brick import Firmware
 
 class SensorDistance(Device):
 
@@ -12,10 +14,15 @@ class SensorDistance(Device):
       self.sendCode("{0} = DistanceSensor('{1}')".format(self._name, port))
 
    @staticmethod
-   def header():
+   def header(firmware):
 
-      return ["from mindstorms import DistanceSensor"]
-
+      if Firmware.RobotInventor == firmware:
+         return ["from mindstorms import DistanceSensor"]
+      elif Firmware.SpikePrime == firmware:
+         return ["from spike import DistanceSensor"]
+      else:
+         return None
+   
    def lightOff(self):
 
       self.lightAll(0)

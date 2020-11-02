@@ -6,8 +6,7 @@ from time import sleep
 from PySide2.QtCore import QCoreApplication
 from PySide2.QtNetwork import QTcpSocket
 
-from .console import Console
-from .device import Device
+from helper import Console, Device
 
 """
 Control commands:
@@ -19,9 +18,15 @@ Control commands:
   CTRL-F        -- on a blank line, enter filetransfer mode
 """
 
+class Firmware:
+
+   RobotInventor = 1
+   SpikePrime = 2
+
 class Brick(QTcpSocket):
 
-   def __init__(self, host = '127.0.0.1', port = 51515, verbose = False):
+
+   def __init__(self, host = '127.0.0.1', port = 51515, firmware = Firmware.RobotInvetor, verbose = False):
 
       QTcpSocket.__init__(self)
       self._verbose = verbose
@@ -33,7 +38,7 @@ class Brick(QTcpSocket):
       self.connectToHost(host, port)
       self.waitForConnected()
 
-      Device.setAllHeaders(self)
+      Device.setAllHeaders(self, firmware)
 
    def sendCode(self, code):
 

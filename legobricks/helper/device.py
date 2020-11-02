@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+from legobricks.brick import Firmware
+
+
 class Device:
 
    def __init__(self, brick, port = None):
@@ -42,15 +45,15 @@ class Device:
          yield subclass 
 
    @staticmethod
-   def header():
+   def header(firmware):
 
       return None         
 
    @staticmethod
-   def setAllHeaders(brick):
+   def setAllHeaders(brick, firmware):
 
       for subClass in Device.iterSubclasses():
-         header = subClass.header()
+         header = subClass.header(firmware)
          if not header:
             continue
          if not isinstance(header, list):

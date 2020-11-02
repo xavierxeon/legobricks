@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-from ..device import Device
+from helper import Device
+
+from .brick import Firmware
 
 # from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 
@@ -29,14 +31,19 @@ class Hub(Device):
    def __init__(self, brick):
 
       Device.__init__(self, brick, None)
-      self.storeName('myhub')
+      self.storeName('lego_hub')
 
-      self.sendCode("{0} = MSHub()".format(self._name))
+      self.sendCode("{0} = Hub()".format(self._name))
 
    @staticmethod
-   def header():
+   def header(firmware):
 
-      return ["from mindstorms import MSHub"]
+      if Firmware.RobotInventor == firmware:
+         return ["from mindstorms import MSHub as Hub"]
+      elif Firmware.SpikePrime == firmware:
+         return ["from spike import PrimeHub as Hub"]
+      else:
+         return None
 
    def waitUntilPressed(self, button):
 

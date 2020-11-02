@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-from ..device import Device
+from helper import Device
+
+from .brick import Firmware
 
 class SensorColor(Device):
 
@@ -23,9 +25,14 @@ class SensorColor(Device):
       self.sendCode("{0} = ColorSensor('{1}')".format(self._name, port))
 
    @staticmethod
-   def header():
+   def header(firmware):
 
-      return ["from mindstorms import ColorSensor"]
+      if Firmware.RobotInventor == firmware:
+         return ["from mindstorms import ColorSensor"]
+      elif Firmware.SpikePrime == firmware:
+         return ["from spike import ColorSensor"]
+      else:
+         return None      
 
    def lightOff(self):
 

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-from ..device import Device
+from helper import Device
+
+from .brick import Firmware
 
 class Direction:
 
@@ -18,9 +20,15 @@ class MotorSingle(Device):
       self.sendCode("{0} = Motor('{1}')".format(self._name, port))
 
    @staticmethod
-   def header():
+   def header(firmware):
 
-      return ["from mindstorms import Motor"]
+      if Firmware.RobotInventor == firmware:
+         return ["from mindstorms import Motor"]
+      elif Firmware.SpikePrime == firmware:
+         return ["from spike import Motor"]
+      else:
+         return None
+
 
    def runDegrees(self, degrees, speed = None):
 
