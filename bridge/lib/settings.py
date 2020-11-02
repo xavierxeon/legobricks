@@ -33,7 +33,7 @@ class Settings:
    def create(fileName):
 
       channelData = {
-         'Name': str()
+         'Name': str(),
          'UsbDevice': str(),
          'BluetoothDevice': str(),
          'ServerPort': 51515
