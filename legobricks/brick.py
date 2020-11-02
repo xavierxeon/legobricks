@@ -88,7 +88,8 @@ class Brick(QTcpSocket):
 
    def _connected(self):
 
-      self.write(b'\x03') # send ctrl+c
+      self.write(b'\x03') # send ctrl+c to stop current program
+      self.write(b'\x02') # send ctrl+b to enter REPL mode
 
    def _handleError(self,  error):
 
