@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import json, os
+import json, os, platform
 from PySide2.QtSerialPort import QSerialPortInfo
 
 from .console import Console
@@ -33,9 +33,17 @@ class Settings:
 
       channelData = {
          'UsbDevice': str(),
-         'BluetoothDevice': '/dev/tty.LEGOHubRobo-SerialPortP',
+         'BluetoothDevice': str(),
          'ServerPort': 51515
       }
+
+      operatingSystem = platform.system()
+
+      if 'Darwin' == operatingSystem:
+         channelData['BluetoothDevice'] = '/dev/tty.LEGOHubRobo-SerialPortP'
+      elif 'Windows' == operatingSystem:
+         channelData['BluetoothDevice'] = '\\\\.\\COM1'
+
       for info in QSerialPortInfo.availablePorts():
          if not info.portName().startswith('tty.'):
             continue
