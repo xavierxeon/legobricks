@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-from legobricks.brick import Firmware
-
+from ..firmware import Firmware
 
 class Device:
 

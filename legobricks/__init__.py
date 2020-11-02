@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-from .brick import Brick, Firmware
+from .brick import Brick
+from .firmware import Firmware
 from .hub import Hub
 from .lightmatrix import LighMatrix
 from .mainloop import mainLoopConsole

@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-from helper import Device
-
-from .brick import Firmware
+from .helper import Device
+from .firmware import Firmware
 
 # from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 

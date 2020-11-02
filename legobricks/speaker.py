@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
+from .helper import Device, MidiNote
 from .hub import Hub
-from helper import Device, MidiNote
 
 class Speaker:
 
