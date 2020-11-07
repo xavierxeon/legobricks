@@ -1,7 +1,7 @@
 #!/usr/env/bin python3
 
 from .helper import Device
-from .firmware import Firmware
+from .version import Version
 
 class SensorDistance(Device):
 
@@ -13,11 +13,11 @@ class SensorDistance(Device):
       self.sendCode("{0} = DistanceSensor('{1}')".format(self._name, port))
 
    @staticmethod
-   def header(firmware):
+   def header(version):
 
-      if Firmware.RobotInventor == firmware:
+      if Version.RobotInventor == version:
          return ["from mindstorms import DistanceSensor"]
-      elif Firmware.SpikePrime == firmware:
+      elif Version.SpikePrime == version:
          return ["from spike import DistanceSensor"]
       else:
          return None

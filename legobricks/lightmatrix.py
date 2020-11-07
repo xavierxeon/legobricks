@@ -2,7 +2,7 @@
 
 from .hub import Hub
 
-class LighMatrix:
+class LightMatrix:
 
    def __init__(self, hub):
 

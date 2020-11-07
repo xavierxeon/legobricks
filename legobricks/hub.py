@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from .helper import Device
-from .firmware import Firmware
+from .version import Version
 
 # from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 
@@ -35,11 +35,11 @@ class Hub(Device):
       self.sendCode("{0} = Hub()".format(self._name))
 
    @staticmethod
-   def header(firmware):
+   def header(version):
 
-      if Firmware.RobotInventor == firmware:
+      if Version.RobotInventor == version:
          return ["from mindstorms import MSHub as Hub"]
-      elif Firmware.SpikePrime == firmware:
+      elif Version.SpikePrime == version:
          return ["from spike import PrimeHub as Hub"]
       else:
          return None

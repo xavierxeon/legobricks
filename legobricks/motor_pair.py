@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from .helper import Device
-from .firmware import Firmware
+from .version import Version
 
 
 class MotorPair(Device):
@@ -14,11 +14,11 @@ class MotorPair(Device):
       self.sendCode("{0} = MotorPair('{1}, {2}')".format(self._name, portA, portB))
 
    @staticmethod
-   def header(firmware):
+   def header(version):
 
-      if Firmware.RobotInventor == firmware:
+      if Version.RobotInventor == version:
          return ["from mindstorms import MotorPair"]
-      elif Firmware.SpikePrime == firmware:
+      elif Version.SpikePrime == version:
          return ["from spike import MotorPair"]
       else:
          return None

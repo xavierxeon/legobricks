@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-class Firmware:
+class Version:
 
    RobotInventor = 1
    SpikePrime = 2

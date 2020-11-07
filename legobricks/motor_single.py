@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from .helper import Device
-from .firmware import Firmware
+from .version import Version
 
 class Direction:
 
@@ -19,11 +19,11 @@ class MotorSingle(Device):
       self.sendCode("{0} = Motor('{1}')".format(self._name, port))
 
    @staticmethod
-   def header(firmware):
+   def header(version):
 
-      if Firmware.RobotInventor == firmware:
+      if Version.RobotInventor == version:
          return ["from mindstorms import Motor"]
-      elif Firmware.SpikePrime == firmware:
+      elif Version.SpikePrime == version:
          return ["from spike import Motor"]
       else:
          return None

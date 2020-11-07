@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from ..firmware import Firmware
+from ..version import Version
 
 class Device:
 
@@ -44,15 +44,15 @@ class Device:
          yield subclass 
 
    @staticmethod
-   def header(firmware):
+   def header(version):
 
       return None         
 
    @staticmethod
-   def setAllHeaders(brick, firmware):
+   def setAllHeaders(brick, version):
 
       for subClass in Device.iterSubclasses():
-         header = subClass.header(firmware)
+         header = subClass.header(version)
          if not header:
             continue
          if not isinstance(header, list):

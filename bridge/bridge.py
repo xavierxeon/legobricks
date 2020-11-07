@@ -63,7 +63,7 @@ def main():
       print()
       return app.exec_()
    except Exception as e:
-      print(e)
+      print(Console.red(str(e)))
       sys.exit(1)
 
 

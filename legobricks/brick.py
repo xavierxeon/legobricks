@@ -7,7 +7,7 @@ from PySide2.QtCore import QCoreApplication
 from PySide2.QtNetwork import QTcpSocket
 
 from .helper import Console, Device
-from .firmware import Firmware
+from .version import Version
 
 """
 Control commands:
@@ -22,7 +22,7 @@ Control commands:
 
 class Brick(QTcpSocket):
 
-   def __init__(self, host = '127.0.0.1', port = 51515, firmware = Firmware.RobotInventor, verbose = False):
+   def __init__(self, host = '127.0.0.1', port = 51515, version = Version.RobotInventor, verbose = False):
 
       QTcpSocket.__init__(self)
       self._verbose = verbose
@@ -34,7 +34,7 @@ class Brick(QTcpSocket):
       self.connectToHost(host, port)
       self.waitForConnected()
 
-      Device.setAllHeaders(self, firmware)
+      Device.setAllHeaders(self, version)
 
    def sendCode(self, code):
 
@@ -56,10 +56,9 @@ class Brick(QTcpSocket):
          byteCode = line.encode()
          self.write(byteCode)
 
-         while not self._recvBuffer:
-            QCoreApplication.processEvents()
-
          while not line in result:
+            while not self._recvBuffer:
+               QCoreApplication.processEvents()
             result += bytes(self._recvBuffer).decode()
             self._recvBuffer = None
             QCoreApplication.processEvents()

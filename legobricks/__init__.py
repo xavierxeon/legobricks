@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 from .brick import Brick
-from .firmware import Firmware
+from .version import Version
 from .hub import Hub
-from .lightmatrix import LighMatrix
+from .lightmatrix import LightMatrix
 from .mainloop import mainLoopConsole
 from .motor_pair import MotorPair
 from .motor_single import MotorSingle
