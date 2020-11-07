@@ -43,11 +43,15 @@ class MotorSingle(Device):
 
    def start(self, speed = None):
 
-      self.sendCode("{0}.start({0}".format(self._name, speed))
+      self.sendCode("{0}.start({1})".format(self._name, speed))
+
+   def startAtPower(self, power):
+
+      self.sendCode("{0}.start_at_power({1})".format(self._name, power))
 
    def stop(self):
 
-      self.sendCode("{0}.stop()")
+      self.sendCode("{0}.stop()".format(self._name))
 
    def getSpeed(self):
 
