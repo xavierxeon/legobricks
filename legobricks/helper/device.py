@@ -58,7 +58,4 @@ class Device:
          if not isinstance(header, list):
             header = [ header ]
          for code in header:
-            text = brick.sendCode(code)
-            if text:
-               print(code)
-               print(text)
+            brick.sendCode(code)
