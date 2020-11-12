@@ -38,9 +38,9 @@ class Hub(Device):
    def header(version):
 
       if Version.RobotInventor == version:
-         return ["from mindstorms import MSHub as Hub"]
+         return ["import hub", "import ujson as json", "from mindstorms import MSHub as Hub"]
       elif Version.SpikePrime == version:
-         return ["from spike import PrimeHub as Hub"]
+         return ["import hub", "import ujson as json", "from spike import PrimeHub as Hub"]
       else:
          return None
 
@@ -66,3 +66,34 @@ class Hub(Device):
 
       self.sendCode("{0}.status_light.off()")
          
+   def powerOff(self):
+
+      self.sendCode("hub.power_off()")
+
+   def info(self):      
+
+      self.sendCode("hub_info  = hub.info()")
+      result = self.sendCode("print(json.dumps(hub_info))")
+      data = Device.dictFromArray(result)
+      return data
+
+   def status(self):
+
+      self.sendCode("hub_status = hub.status()")
+      result = self.sendCode("print(json.dumps(hub_status))")
+      data = Device.dictFromArray(result)
+      return data
+
+   def batteryInfo(self):
+
+      self.sendCode("hub_battery = hub.battery.info()")
+      result = self.sendCode("print(json.dumps(hub_battery))")
+      data = Device.dictFromArray(result)
+      return data
+
+   def bluetoothInfo(self):
+
+      self.sendCode("hub_bluetooth = hub.bluetooth.info()")         
+      result = self.sendCode("print(json.dumps(hub_bluetooth))")
+      data = Device.dictFromArray(result)
+      return data

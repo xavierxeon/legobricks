@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import json
+
 from ..version import Version
 
 class Device:
@@ -35,6 +37,17 @@ class Device:
          return None
          
       return valueType(value)
+
+   @staticmethod
+   def dictFromArray(result):
+
+      if not isinstance(result, list) or len(result) < 1:
+         return None
+
+      text = result[0]
+      text = text.replace("'", '"')
+      data = json.loads(text)
+      return data
 
    @classmethod
    def iterSubclasses(cls):
