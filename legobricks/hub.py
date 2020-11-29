@@ -2,6 +2,7 @@
 
 from .helper import Device
 from .version import Version
+from .status import Status
 
 # from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 
@@ -25,7 +26,6 @@ class Hub(Device):
          Violet = 'violet'
          Yellow = 'yellow'
          White = 'white'
-
 
    def __init__(self, brick):
 
@@ -77,19 +77,25 @@ class Hub(Device):
       data = Device.dictFromArray(result)
       return data
 
-   def status(self):
+   def status(self, raw = False):
 
       self.sendCode("hub_status = hub.status()")
       result = self.sendCode("print(json.dumps(hub_status))")
       data = Device.dictFromArray(result)
-      return data
+      if raw:
+         return data
+      else:
+         return Status(data)
 
-   def batteryInfo(self):
+   def batteryInfo(self, raw = False):
 
       self.sendCode("hub_battery = hub.battery.info()")
       result = self.sendCode("print(json.dumps(hub_battery))")
       data = Device.dictFromArray(result)
-      return data
+      if raw:
+         return data
+      else:
+         return int(data['battery_capacity_left'])
 
    def bluetoothInfo(self):
 

@@ -12,3 +12,5 @@ from .sensor_color import SensorColor
 from .sensor_distance import SensorDistance
 from .sensor_force import SensorForce
 from .speaker import Speaker
+from .status import Status
+from .version import Version
