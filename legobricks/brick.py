@@ -67,6 +67,7 @@ class Brick(QTcpSocket):
          sendLineOfCode(line)
 
       resultList = result.split('\r\n')    
+      #print(resultList)
       resultList = [ line for line in resultList if not line.startswith('>>> ')]
 
       if self._verbose:

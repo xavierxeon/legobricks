@@ -38,9 +38,9 @@ class Hub(Device):
    def header(version):
 
       if Version.RobotInventor == version:
-         return ["import hub", "import ujson as json", "from mindstorms import MSHub as Hub"]
+         return ["import hub as hwhub", "import ujson as json", "from mindstorms import MSHub as Hub"]
       elif Version.SpikePrime == version:
-         return ["import hub", "import ujson as json", "from spike import PrimeHub as Hub"]
+         return ["import hub as hwhub", "import ujson as json", "from spike import PrimeHub as Hub"]
       else:
          return None
 
@@ -72,14 +72,15 @@ class Hub(Device):
 
    def info(self):      
 
-      self.sendCode("hub_info  = hub.info()")
+      self.sendCode("hub_info  = hwhub.info()")
       result = self.sendCode("print(json.dumps(hub_info))")
       data = Device.dictFromArray(result)
       return data
 
    def status(self, raw = False):
 
-      self.sendCode("hub_status = hub.status()")
+      self.sendCode("hub_status = hwhub.status()")
+      self.sendCode("print(type(hub_status))")
       result = self.sendCode("print(json.dumps(hub_status))")
       data = Device.dictFromArray(result)
       if raw:
@@ -89,7 +90,7 @@ class Hub(Device):
 
    def batteryInfo(self, raw = False):
 
-      self.sendCode("hub_battery = hub.battery.info()")
+      self.sendCode("hub_battery = hwhub.battery.info()")
       result = self.sendCode("print(json.dumps(hub_battery))")
       data = Device.dictFromArray(result)
       if raw:
@@ -99,7 +100,7 @@ class Hub(Device):
 
    def bluetoothInfo(self):
 
-      self.sendCode("hub_bluetooth = hub.bluetooth.info()")         
+      self.sendCode("hub_bluetooth = hwhub.bluetooth.info()")         
       result = self.sendCode("print(json.dumps(hub_bluetooth))")
       data = Device.dictFromArray(result)
       return data
